@@ -5,24 +5,21 @@ html {
 *,
 *::after,
 *::before {
-    margin: 0;
+
     padding: 0;
-    box-sizing: inherit;
+    // box-sizing: inherit;
     font-family: 'montserrat';
 }
 
 body {
-    overflow-x: hidden;
-    font-weight: normal;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0 0 100px 0;
+    font-family: sans-serif;
+    background-image: url(../components/images/brushed-alum.png);
 }
 
 .app {
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: grid;
     justify-items: center;
     padding-bottom: 10px;

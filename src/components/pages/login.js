@@ -2,47 +2,63 @@ import React, { Component } from "react";
 import axios from "axios";
 
 
-
 export default class Login extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            data: [],
+            errorText: ""
         }
 
-        this.handleChange=this.handleChange.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
-handleSubmit(event) {
-    axios.post("/AuthenticateUser",
-    {
-      user: {
+  handleChange(event) {
+        this.setState({
+          [event.target.name]: event.target.value,
+          errorText: ""
+        });
+      }
+    
+  handleSubmit(event) {
+    event.preventDefault();
+  
+      axios.post("https://seh-api.herokuapp.com/login", {
         username: this.state.username,
         password: this.state.password
+        
+    }, { withCredentials: false })
+
+    .then(result => {
+      // console.log(result)
+      if (result.data === "correct credentials" ) {
+        
+        this.props.handleSuccessfulAuth();
+      } else {
+        this.setState({
+          errorText: "Wrong username or password"
+        });
+        this.props.handleUnsuccessfulAuth();
+
       }
-    }, {withCredentials: true }
-    ).then(response => {
-      console.log("handleSubmit", response)
     })
-  event.preventDefault();
+    .catch(error => {
+      this.setState({
+        errorText: "An error occurred"
+      });
+      console.log("not sucessful auth", error)
+      this.props.handleUnsuccessfulAuth();
+    });
   }
 
-handleChange(event) {
-    this.setState({
-        [event.target.name]: event.target.value
-    })
-}
   render() {
     return (
       <div>
-        <h1>LOGIN</h1>
-
-        <h2>{this.state.username}</h2>
-        <h2>{this.state.password}</h2>
 
         <form onSubmit={this.handleSubmit}>
           <input 
@@ -60,10 +76,12 @@ handleChange(event) {
                 value={this.state.password}
                 onChange={this.handleChange}
              />
-
-             <div>
+             <div>{this.state.errorText}</div>
+             
+             <div className="auth-login-btn">
                  <button type="submit">Login</button>
-             </div>
+             </div> 
+            
         </form>
       </div>
     );

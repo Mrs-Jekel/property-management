@@ -1,0 +1,42 @@
+.auth-page-content {
+    display: flex;
+    justify-content: center;
+    height: 50vh;
+    margin-top: 175px;
+    
+    .center-auth{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 65%;
+        background: linear-gradient(45deg, #68aff5, #5ceea5);
+        padding-left: 20px;
+        padding-right: 20px;
+        -webkit-box-shadow: 10px 10px 39px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 39px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 39px 0px rgba(0,0,0,0.75);
+        
+
+        input {
+            margin: 10px;
+            width: 94%;
+            height: 40px;
+        }
+        
+    }
+    
+    .auth-login-btn {
+        display: flex;
+        justify-content: center;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        font-size: 16px;
+    }
+
+
+    // .right-side {
+    //     background-size: cover;
+    //     background-image: center;
+    // }
+}
